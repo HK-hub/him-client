@@ -1,8 +1,14 @@
 <script setup>
 import {ref, reactive} from 'vue';
 import {layer} from '@layui/layer-vue'
+import {useCounterStore} from "./store/modules/test";
 
 const model = reactive({})
+const counter = useCounterStore()
+
+const count = () => {
+    counter.increment()
+}
 
 const submit = () => {
     layer.msg(`${JSON.stringify(model)}`, {time: 2000});
@@ -14,7 +20,7 @@ const submit = () => {
 
     <h1>Hello App!</h1>
     <p>
-        <button @click="">消息提示</button>
+        <button @click="count()">{{ counter.count }}</button>
     </p>
     <p>
         <lay-button>默认按钮</lay-button>
